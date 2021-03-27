@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<div class='container'>
+    <h3>{{ product.name }}</h3>
+    <p> {{ product.price }}</p>
+    <p> {{ product.count }}</p>
+    <p> {{ product.description }}</p>
+    {% if product.image %}
+    <img src='{{ product.image.url }}' alt='product image'>
+    {% endif %}
+
+    <form action="{% url 'add_comment_url' product.id %}" method="post">
+        {{form_order}}
+        <input type='submit' class='btn btn-primary'
+        value='Добавить в корзину'>
+    </form>
+</div>
+</div class='container-fluid'>
+
+    {% csrf_token %}
+    {{form}}    
+    <input class='btn btn-primary' type='submit' value='Комментировать'> 
+</form>
+ 
+    Комментарии:
+    {% for comment in product.comments.all %}
+    <div class='row justify-content-center'>
+        <div class='card mt-3' style='width:30rem;'>
+            <div class='card-body'>
+                <h5 class='card-title'>Автор: {{comment.author}}</h5>
+                <h6 class='card-subtitle mb-2 text-muted'>Время: {{comment.time_stamp}</h6>
+                <p class='card-text'>Комментарий: {{comment.comment}}</p>
+           
+    </div>
+</div>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock content %}

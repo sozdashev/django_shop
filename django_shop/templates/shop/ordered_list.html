@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+{% of ordered %}
+<ul>
+    {% for order in ordered %}
+    <li>
+        <a href='{%url 'ordered_url' order.order_code%'>
+        {{% order.order_code%}}
+        </a>
+        {{order.date_order}}
+    </li>
+    {%endor%}
+</ul>
+{%else%}
+<p>У вас пока нет заказов</p>
+{%endif%}
+{%endblock content%}
